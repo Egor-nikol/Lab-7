@@ -46,13 +46,6 @@ def word_info(data):
     print("№6")
     print(f"Аудио: файл {entry["hwi"]["prs"][0]["sound"]["audio"]}", "\n")
 
-    #другие формы слова
-    print("№7")
-    stems = entry["meta"]["stems"]
-    if stems:
-        print(f"Другие формы: {", ".join(stems)}")
-    else:
-        print("Форм нет", "\n")
 
 
 def fetch_learners_dictionary(word):
