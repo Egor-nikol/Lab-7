@@ -1,4 +1,11 @@
 import requests
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+my_api = os.getenv("ANTHROPIC_API_KEY_2")
+
 
 
 def get_weather(city_name):
@@ -28,10 +35,10 @@ def get_weather(city_name):
         print(f"Влажность: {humidity}%")
         print(f"Давление: {pressure} гПа")
 
-    except: 
-        print(response.status_code)
+    except Exception as e:
+        print(e)
 
 city = "Ulianovsk"
-city = "Saint Petersburg"
+
 
 get_weather(city)

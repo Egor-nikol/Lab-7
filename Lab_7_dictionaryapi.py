@@ -1,5 +1,11 @@
 import requests
 import json
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+my_api = os.getenv("ANTHROPIC_API_KEY_1")
 
 
 def word_info(data):
@@ -10,14 +16,14 @@ def word_info(data):
 
     #основное значение
     entry = data[0]
-
+    word = entry["hwi"]
     #cлово
     print("№1")
-    print(f"Слово: {entry["hwi"]["hw"].replace("*", "")}", "\n")
+    print(f"Слово: {word["hw"].replace("*", "")}", "\n")
     
     #произношение 
     print("№2")
-    print(f"Произношение: {entry["hwi"]["prs"][0]["ipa"] }", "\n")
+    print(f"Произношение: {word["prs"][0]["ipa"] }", "\n")
 
     #часть речи
     print("№3")
@@ -44,7 +50,7 @@ def word_info(data):
 
     #аудио
     print("№6")
-    print(f"Аудио: файл {entry["hwi"]["prs"][0]["sound"]["audio"]}", "\n")
+    print(f"Аудио: файл {word["prs"][0]["sound"]["audio"]}", "\n")
 
 
 
@@ -53,8 +59,11 @@ def fetch_dictionary(word):
     f"https://www.dictionaryapi.com/api/v3/references/learners/json/{word}"
     
     #https://dictionaryapi.com/products/api-learners-dictionary
+    # Загружает переменные из .env
+    # Получает ключ
+
     params = {
-        'key': "e1122957-c9cf-4f1f-8f6f-a4c039d5b6f5"
+        'key': my_api
     }
 
     try:
@@ -62,8 +71,8 @@ def fetch_dictionary(word):
         data = response.json()
         return word_info(data)
         
-    except:
-        print(response.status_code)
+    except Exception as e:
+        print(e)
 
 search_word = "summer"
 dictionary_data = fetch_dictionary(search_word)
