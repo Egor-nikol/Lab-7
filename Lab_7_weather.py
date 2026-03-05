@@ -31,7 +31,7 @@ def get_weather(city_name):
     except: 
         print(response.status_code)
 
-
-city = "Saint Petersburg"
 city = "Ulianovsk"
+city = "Saint Petersburg"
+
 get_weather(city)

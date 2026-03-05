@@ -48,7 +48,7 @@ def word_info(data):
 
 
 
-def fetch_learners_dictionary(word):
+def fetch_dictionary(word):
     base_url = \
     f"https://www.dictionaryapi.com/api/v3/references/learners/json/{word}"
     
@@ -66,4 +66,4 @@ def fetch_learners_dictionary(word):
         print(response.status_code)
 
 search_word = "summer"
-dictionary_data = fetch_learners_dictionary(search_word)
+dictionary_data = fetch_dictionary(search_word)
